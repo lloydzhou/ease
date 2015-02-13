@@ -48,7 +48,7 @@ var Ease = function(name){
         outelastic: e(1),
         inoutelastic: e(),
     }
-    var ename = name.toLowerCase().replace(/-/g, '')
+    var ename = name.toLowerCase().replace(/[_-]/g, '')
     return _[ename] || _.linear
 };
 
