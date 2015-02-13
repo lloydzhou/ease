@@ -1,0 +1,32 @@
+<style>
+    #main > div > div{height:5px;}
+    #main > div {width:500px;height:500px;transform: rotate(-80deg);}
+</style>
+<div id="main" style="padding-left:300px;"></div>
+<script src="ease.js"></script>
+<script>
+
+    var p = function(v, c, p){
+        var d = document.createElement('div')
+            d.style.width = 25+v*50+'%'
+        d.style.background = c || ''
+        p = p || document.getElementById('main')
+        p.appendChild(d)
+        return d
+    }
+    var test = function(name){
+        var e = new Ease(name), n = p(1);
+        n.innerHTML = '<h2>'+name+'</h2>'
+        console.log(name)
+        for (var i=0;i<100;i++)
+            p(e(i*.01), '#f00', n)
+    };
+
+['in', 'out', 'inout'].forEach(function(i){
+    ['sine', 'quad', 'cube', 'quart', 'quint', 'expo', 'circ', 'back', 'elastic', 'bounce'].forEach(function(f){
+    //['elastic'].forEach(function(f){
+        test(i+f)
+    })
+})
+</script>
+
