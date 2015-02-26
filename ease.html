@@ -4,28 +4,26 @@
     #main {width: 500px;padding-left:200px;}
 </style>
 <div id="main"></div>
-<script src="ease.js"></script>
+<script src="ease.min.js"></script>
 <script>
-
-    var p = function(v, c, p){
-        var d = document.createElement('div')
-            d.style.width = 25+v*50+'%'
-        d.style.background = c || ''
-        p = p || document.getElementById('main')
-        p.appendChild(d)
-        return d
-    }
-    var test = function(name){
-        var e = new Ease(name), n = p(1);
-        n.innerHTML = '<h2>'+name+'</h2>'
-        console.log(name)
-        for (var i=0;i<100;i++)
-            p(e(i*.01), '#f00', n)
-    };
+var p = function(v, c, p){
+    var d = document.createElement('div')
+        d.style.width = 25+v*50+'%'
+    d.style.background = c || ''
+    p = p || document.getElementById('main')
+    p.appendChild(d)
+    return d
+}
+var test = function(name){
+    var e = new Ease(name), n = p(1);
+    n.innerHTML = '<h2>'+name+'</h2>'
+    console.log(name)
+    for (var i=0;i<100;i++)
+        p(e(i*.01), '#f00', n)
+};
 
 ['in', 'out', 'inout'].forEach(function(i){
     ['sine', 'quad', 'cube', 'quart', 'quint', 'expo', 'circ', 'back', 'elastic', 'bounce'].forEach(function(f){
-    //['elastic'].forEach(function(f){
         test(i+f)
     })
 })

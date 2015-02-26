@@ -1,19 +1,18 @@
 var Ease = function(name){
-    var e = function(i){
+    var p = Math.pow, e = function(i){
+        var o = function(n,i){return i * p( 2, (i>0?-10:10)*(i>.5?n:(n-=1)) ) * Math.sin( ( n - .1  ) * ( 2 * Math.PI  ) / .4  ) + (i>0?1:0);}
         return function(n){
-            var o = function(n,i){return i * Math.pow( 2, (i>0?-10:10)*(i>.5?n:(n-=1)) ) * Math.sin( ( n - .1  ) * ( 2 * Math.PI  ) / .4  ) + (i>0?1:0);}
             if (n === 0 || n === 1) return n;
             if (i) return o(n,i)
             return ((n*=2)<1)?o(n,-.5):o(n,.5)
         }
-        
     }
     var outbounce = function(n){
         return n<(1/2.75)?7.5625*n*n:n<(2/2.75)?7.5625*(n-=(1.5/2.75))*n+0.75:n<(2.5/2.75)?7.5625*(n-=(2.25/2.75))*n+0.9375:7.5625*(n-=(2.625/2.75))*n+0.984375;
-    }, p = Math.pow, q = function(k,i){
+    }, q = function(k,i){
+        var t = k%2?1:-1
         return function(n){
-            var t = p(-1,k-1);
-            return i==-1?p(n,k):1==i?--n*p(n,k-1)*t+1: (n*=2)<1?.5*p(n,k):.5*t*((n-=2)*p(n,k-1)+t*2)
+            return i==-1?p(n,k):1==i?--n*p(n,k-1)*t+1: n<.5?.5*p(n*2,k):--n*p(n*2,k-1)*t+1
         }
     }, _ = {
         linear: function(n){return n},
